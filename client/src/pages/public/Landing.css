@@ -2,26 +2,75 @@
   min-height: 100vh;
 }
 
+/* ── Hero ── */
 .landing-hero {
+  position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
-  min-height: 80vh;
-  padding: 60px 24px;
+  min-height: 85vh;
+  padding: 80px 24px 60px;
   text-align: center;
-  background: linear-gradient(135deg, var(--accent-light) 0%, var(--bg) 100%);
+  overflow: hidden;
+}
+
+.landing-hero-bg {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, var(--accent-light) 0%, var(--bg) 50%, var(--surface) 100%);
+  z-index: 0;
+}
+
+.landing-hero-bg::before {
+  content: '';
+  position: absolute;
+  width: 600px;
+  height: 600px;
+  border-radius: 50%;
+  background: var(--accent);
+  opacity: 0.06;
+  top: -200px;
+  right: -100px;
+}
+
+.landing-hero-bg::after {
+  content: '';
+  position: absolute;
+  width: 400px;
+  height: 400px;
+  border-radius: 50%;
+  background: var(--accent);
+  opacity: 0.04;
+  bottom: -150px;
+  left: -50px;
 }
 
 .landing-hero-content {
-  max-width: 640px;
+  position: relative;
+  z-index: 1;
+  max-width: 680px;
+}
+
+.landing-hero-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 16px;
+  background: var(--accent-light);
+  color: var(--accent);
+  border-radius: 999px;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  margin-bottom: 24px;
 }
 
 .landing-hero-title {
-  font-size: 3rem;
+  font-size: 3.25rem;
   font-weight: 800;
-  line-height: 1.1;
-  margin-bottom: 16px;
+  line-height: 1.08;
+  margin-bottom: 18px;
   color: var(--text);
+  letter-spacing: -0.02em;
 }
 
 .landing-hero-sub {
@@ -29,49 +78,373 @@
   color: var(--muted);
   margin-bottom: 32px;
   line-height: 1.6;
+  max-width: 520px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .landing-hero-actions {
   display: flex;
   gap: 12px;
   justify-content: center;
+  margin-bottom: 48px;
 }
 
+.landing-hero-stats {
+  display: flex;
+  gap: 48px;
+  justify-content: center;
+}
+
+.landing-hero-stat {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.landing-hero-stat-num {
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: var(--accent);
+}
+
+.landing-hero-stat-label {
+  font-size: 0.8125rem;
+  color: var(--muted);
+}
+
+/* ── Sections ── */
 .landing-section {
-  padding: 64px 24px;
+  padding: 80px 24px;
   max-width: 1200px;
   margin: 0 auto;
-  text-align: center;
 }
 
 .landing-section--alt {
   background: var(--surface);
+  max-width: 100%;
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+}
+
+.landing-section--alt > * {
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.landing-section-header {
+  text-align: center;
+  margin-bottom: 40px;
 }
 
 .landing-section-title {
   font-size: 2rem;
-  font-weight: 700;
-  margin-bottom: 12px;
+  font-weight: 800;
+  margin-bottom: 8px;
+  letter-spacing: -0.01em;
 }
 
 .landing-section-sub {
   color: var(--muted);
   font-size: 1rem;
+  max-width: 480px;
+  margin: 0 auto;
 }
 
-.landing-section-text {
+.landing-loading {
+  display: flex;
+  justify-content: center;
+  padding: 48px 0;
+}
+
+.landing-empty {
+  text-align: center;
+  color: var(--muted);
+  padding: 48px 0;
+}
+
+/* ── Category Tabs ── */
+.landing-tabs {
+  display: flex;
+  gap: 6px;
+  justify-content: center;
+  margin-bottom: 32px;
+}
+
+.landing-tab {
+  padding: 8px 20px;
+  border-radius: 999px;
+  font-size: 0.875rem;
+  font-weight: 500;
+  border: 1px solid var(--border);
+  background: var(--surface);
+  color: var(--muted);
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.landing-tab:hover {
+  color: var(--text);
+  border-color: var(--muted);
+}
+
+.landing-tab--active {
+  background: var(--accent);
+  color: #fff;
+  border-color: var(--accent);
+}
+
+/* ── Services Grid ── */
+.landing-services-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 20px;
+}
+
+/* ── About ── */
+.landing-about {
+  display: grid;
+  gap: 40px;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.landing-about-text {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.landing-about-text p {
   color: var(--muted);
   font-size: 1rem;
-  max-width: 600px;
-  margin: 0 auto;
-  line-height: 1.6;
+  line-height: 1.7;
 }
 
-@media (max-width: 640px) {
+.landing-team-title {
+  font-size: 1.125rem;
+  font-weight: 700;
+  margin-bottom: 16px;
+}
+
+.landing-team-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.landing-team-card {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 14px 16px;
+  background: var(--bg);
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border);
+}
+
+.landing-team-card div {
+  display: flex;
+  flex-direction: column;
+}
+
+.landing-team-card strong {
+  font-size: 0.9375rem;
+  font-weight: 600;
+}
+
+.landing-team-card span {
+  font-size: 0.8125rem;
+  color: var(--muted);
+}
+
+.landing-team-avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: var(--accent-light);
+  color: var(--accent);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+/* ── Contact ── */
+.landing-contact-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 16px;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.landing-contact-card {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 20px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  text-decoration: none;
+  color: inherit;
+  transition: border-color 0.15s ease;
+}
+
+.landing-contact-card:hover {
+  border-color: var(--accent);
+  color: inherit;
+}
+
+.landing-contact-card h4 {
+  font-size: 0.8125rem;
+  font-weight: 600;
+  color: var(--text);
+  margin-bottom: 2px;
+}
+
+.landing-contact-card p {
+  font-size: 0.875rem;
+  color: var(--muted);
+}
+
+.landing-contact-card svg {
+  color: var(--accent);
+  flex-shrink: 0;
+}
+
+/* ── Location ── */
+.landing-location-grid {
+  display: grid;
+  grid-template-columns: 1fr 320px;
+  gap: 24px;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.landing-map {
+  border-radius: var(--radius);
+  overflow: hidden;
+  min-height: 360px;
+  border: 1px solid var(--border);
+}
+
+.landing-map--placeholder {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  background: var(--bg);
+  color: var(--muted);
+}
+
+.landing-hours {
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 24px;
+}
+
+.landing-hours h3 {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 1rem;
+  font-weight: 700;
+  margin-bottom: 16px;
+}
+
+.landing-hours-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.landing-hours-row {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.875rem;
+}
+
+.landing-hours-row span:first-child {
+  font-weight: 500;
+  color: var(--text);
+}
+
+.landing-hours-row span:last-child {
+  color: var(--muted);
+}
+
+/* ── Footer ── */
+.landing-footer {
+  border-top: 1px solid var(--border);
+  padding: 24px;
+}
+
+.landing-footer-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.landing-footer-brand {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 700;
+  color: var(--text);
+}
+
+.landing-footer p {
+  font-size: 0.8125rem;
+  color: var(--muted);
+}
+
+/* ── Responsive ── */
+@media (max-width: 768px) {
   .landing-hero-title {
-    font-size: 2rem;
+    font-size: 2.25rem;
   }
+
   .landing-hero-actions {
     flex-direction: column;
+    align-items: center;
+  }
+
+  .landing-hero-stats {
+    gap: 24px;
+  }
+
+  .landing-location-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .landing-section {
+    padding: 48px 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  .landing-hero-title {
+    font-size: 1.875rem;
+  }
+
+  .landing-hero-stats {
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .landing-services-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .landing-contact-grid {
+    grid-template-columns: 1fr;
   }
 }
