@@ -1,0 +1,97 @@
+.staff-picker {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.staff-picker-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 600;
+  font-size: 0.9375rem;
+  color: var(--text);
+}
+
+.staff-picker-loading {
+  display: flex;
+  justify-content: center;
+  padding: 24px;
+}
+
+.staff-picker-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 10px;
+}
+
+.staff-card {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 16px;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border);
+  background: var(--surface);
+  cursor: pointer;
+  transition: all 0.15s ease;
+  text-align: left;
+  font-family: inherit;
+  color: var(--text);
+}
+
+.staff-card:hover {
+  border-color: var(--accent);
+}
+
+.staff-card--active {
+  border-color: var(--accent);
+  background: var(--accent-light);
+}
+
+.staff-card-avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: var(--bg);
+  color: var(--muted);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.staff-card-avatar--auto {
+  background: var(--accent-light);
+  color: var(--accent);
+}
+
+.staff-card--active .staff-card-avatar {
+  background: var(--accent);
+  color: #fff;
+}
+
+.staff-card-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.staff-card-info strong {
+  font-size: 0.9375rem;
+  font-weight: 600;
+}
+
+.staff-card-info span {
+  font-size: 0.8125rem;
+  color: var(--muted);
+}
+
+.staff-picker-note {
+  font-size: 0.8125rem;
+  color: var(--muted);
+  line-height: 1.5;
+  padding: 10px 14px;
+  background: var(--bg);
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border);
+}

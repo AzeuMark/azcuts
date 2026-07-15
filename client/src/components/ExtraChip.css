@@ -1,0 +1,39 @@
+.extra-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 10px 16px;
+  border-radius: 999px;
+  border: 1px solid var(--border);
+  background: var(--surface);
+  color: var(--text);
+  font-size: 0.875rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  font-family: inherit;
+}
+
+.extra-chip:hover {
+  border-color: var(--accent);
+}
+
+.extra-chip--selected {
+  background: var(--accent-light);
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+.extra-chip-name {
+  font-weight: 500;
+}
+
+.extra-chip-price {
+  font-size: 0.8125rem;
+  color: var(--muted);
+}
+
+.extra-chip--selected .extra-chip-price {
+  color: var(--accent);
+  opacity: 0.8;
+}

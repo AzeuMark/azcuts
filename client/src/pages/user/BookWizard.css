@@ -1,0 +1,105 @@
+.book-wizard {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.book-title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-bottom: 8px;
+  text-align: center;
+}
+
+.book-loading {
+  display: flex;
+  justify-content: center;
+  padding: 80px 0;
+}
+
+.book-total-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 20px;
+  background: var(--accent-light);
+  border-radius: var(--radius-sm);
+  margin-bottom: 20px;
+  font-size: 0.9375rem;
+  font-weight: 500;
+}
+
+.book-total-amount {
+  font-size: 1.25rem;
+  font-weight: 800;
+  color: var(--accent);
+}
+
+.book-step-card {
+  min-height: 320px;
+}
+
+.book-step {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.book-step-title {
+  font-size: 1.125rem;
+  font-weight: 700;
+}
+
+.book-step-optional {
+  font-weight: 400;
+  font-size: 0.875rem;
+  color: var(--muted);
+}
+
+.book-step-desc {
+  font-size: 0.9375rem;
+  color: var(--muted);
+  margin-top: -8px;
+}
+
+.book-step-divider {
+  height: 1px;
+  background: var(--border);
+  margin: 8px 0;
+}
+
+.book-empty {
+  color: var(--muted);
+  text-align: center;
+  padding: 24px;
+}
+
+.book-services-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 14px;
+}
+
+.book-extras-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.book-nav {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-top: 20px;
+}
+
+@media (max-width: 640px) {
+  .book-services-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (max-width: 420px) {
+  .book-services-grid {
+    grid-template-columns: 1fr;
+  }
+}
