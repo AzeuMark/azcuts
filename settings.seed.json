@@ -1,0 +1,29 @@
+{
+  "_id": "system",
+  "systemMode": "online",
+  "timezone": "Asia/Manila",
+  "country": "PH",
+  "region": "Philippines",
+  "currency": "PHP",
+  "taxRate": 0,
+  "slotStepMinutes": 30,
+  "storeHours": {
+    "mon": { "open": "09:00", "close": "20:00", "closed": false },
+    "tue": { "open": "09:00", "close": "20:00", "closed": false },
+    "wed": { "open": "09:00", "close": "20:00", "closed": false },
+    "thu": { "open": "09:00", "close": "20:00", "closed": false },
+    "fri": { "open": "09:00", "close": "20:00", "closed": false },
+    "sat": { "open": "09:00", "close": "21:00", "closed": false },
+    "sun": { "open": "10:00", "close": "18:00", "closed": false }
+  },
+  "nicknames": ["Barber", "Hairstylist", "Hairdresser", "Stylist", "No Input"],
+  "shopInfo": {
+    "name": "AzCuts",
+    "tagline": "Sharp Looks, Effortless Booking",
+    "phone": "+63 900 000 0000",
+    "email": "hello@azcuts.com",
+    "address": "123 Main Street, City, Philippines",
+    "mapEmbedUrl": "",
+    "socials": { "facebook": "", "instagram": "", "tiktok": "" }
+  }
+}

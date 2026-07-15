@@ -1,0 +1,18 @@
+{
+  "_comment": "AzCuts — Admin account seed. Import this into MongoDB Compass: Database 'azeubarbersalondb' > Collection 'users' > ADD DATA > Import JSON. Login email: admin@azcuts.com  |  Login password: Admin@123  (CHANGE IT after first login in Admin > Settings).",
+  "fullName": "Uelmark G. Valdehueza",
+  "nickname": "Administrator",
+  "email": "admin@azcuts.com",
+  "phone": "+639000000000",
+  "address": "AzCuts Barber Shop & Salon HQ",
+  "password": "$2b$10$oXZafByIR8KUXXaRvrkxiuf05pFF8x/vevpVRhGQLCWuDuRW1wwO6",
+  "role": "admin",
+  "status": "active",
+  "isApproved": true,
+  "avatar": "",
+  "totalServed": 0,
+  "avgRating": 0,
+  "discountDefault": 0,
+  "createdAt": { "$date": "2026-01-01T00:00:00.000Z" },
+  "updatedAt": { "$date": "2026-01-01T00:00:00.000Z" }
+}

@@ -1,0 +1,9 @@
+[
+  { "name": "Classic Haircut", "category": "haircut", "description": "Timeless clean cut tailored to your style.", "price": 150, "durationMinutes": 30, "image": "/uploads/templates/haircut1.jpg", "isActive": true },
+  { "name": "Skin Fade", "category": "haircut", "description": "Sharp gradient fade down to the skin.", "price": 200, "durationMinutes": 45, "image": "/uploads/templates/haircut2.jpg", "isActive": true },
+  { "name": "Buzz Cut", "category": "haircut", "description": "Quick, uniform low-maintenance cut.", "price": 120, "durationMinutes": 20, "image": "/uploads/templates/haircut3.jpg", "isActive": true },
+  { "name": "Beard Trim & Shape", "category": "haircut", "description": "Precision beard lineup and shaping.", "price": 100, "durationMinutes": 20, "image": "/uploads/templates/haircut4.jpg", "isActive": true },
+  { "name": "Hair Color", "category": "salon", "description": "Full color application with premium dye.", "price": 500, "durationMinutes": 90, "image": "/uploads/templates/salon1.jpg", "isActive": true },
+  { "name": "Hair Rebond", "category": "salon", "description": "Straightening treatment for smooth hair.", "price": 900, "durationMinutes": 120, "image": "/uploads/templates/salon2.jpg", "isActive": true },
+  { "name": "Hair Spa & Treatment", "category": "salon", "description": "Nourishing spa for healthy, shiny hair.", "price": 350, "durationMinutes": 60, "image": "/uploads/templates/salon3.jpg", "isActive": true }
+]
