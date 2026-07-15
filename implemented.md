@@ -25,7 +25,7 @@
 - [ ] **Phase 10 — Hardening & Deployment** — rate limit, validation, deploy docs.
 
 ## CLIENT PHASES
-- [ ] **Phase 0 — Skeleton & design system** — router, providers, theme tokens + light/dark toggle, UI kit.
+- [x] **Phase 0 — Skeleton & design system** — router, providers, theme tokens + light/dark toggle, UI kit.
 - [ ] **Phase 1 — Auth & guards** — login/register, role-gated routes, silent refresh.
 - [ ] **Phase 2 — Landing page** — hero, services, about, contact, location.
 - [ ] **Phase 3 — Inventory display + booking data** — ServiceCard, SlotPicker, StaffPicker.
@@ -43,4 +43,4 @@
 ## LOG
 | Date | Side | Phase | What was implemented | Notes |
 |------|------|-------|----------------------|-------|
-|      |      |       |                      |       |
+| 2026-07-15 | Client | Phase 0 | Skeleton & design system | Vite init, all deps, theme tokens (light/dark), 10 UI components, layout shell, contexts, routes, page stubs, Axios, React Query, Socket.io, no-flash theme script. Build passes. |
