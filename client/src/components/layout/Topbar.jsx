@@ -1,10 +1,10 @@
 import { useNavigate } from 'react-router-dom';
-import { LogOut, User, Bell } from 'lucide-react';
+import { LogOut, User, Bell, Menu } from 'lucide-react';
 import { useAuth } from '../../context/AuthContext';
 import ThemeToggle from '../ui/ThemeToggle';
 import './Topbar.css';
 
-export default function Topbar() {
+export default function Topbar({ onMenuOpen }) {
   const { user, logout } = useAuth();
   const navigate = useNavigate();
 
@@ -15,14 +15,20 @@ export default function Topbar() {
 
   return (
     <header className="topbar">
-      <div className="topbar-left" />
+      <div className="topbar-left">
+        {onMenuOpen && (
+          <button className="topbar-menu-btn" onClick={onMenuOpen} aria-label="Open navigation menu">
+            <Menu size={20} />
+          </button>
+        )}
+      </div>
       <div className="topbar-right">
         <ThemeToggle />
         <button className="topbar-icon-btn" aria-label="Notifications">
           <Bell size={18} />
         </button>
         <div className="topbar-user">
-          <div className="topbar-avatar">
+          <div className="topbar-avatar" aria-hidden="true">
             <User size={16} />
           </div>
           <span className="topbar-username">{user?.fullName || 'User'}</span>

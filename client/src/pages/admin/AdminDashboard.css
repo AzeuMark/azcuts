@@ -1,0 +1,124 @@
+.admin-dash {
+  max-width: 1100px;
+}
+
+.admin-dash-loading {
+  display: flex;
+  justify-content: center;
+  padding: 80px 0;
+}
+
+.admin-dash-title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-bottom: 24px;
+}
+
+.admin-dash-counters {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 14px;
+  margin-bottom: 32px;
+}
+
+.admin-counter-card {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.admin-counter-icon {
+  width: 44px;
+  height: 44px;
+  border-radius: var(--radius-sm);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.admin-counter-icon--blue { background: rgba(37,99,235,0.1); color: #2563EB; }
+.admin-counter-icon--indigo { background: rgba(79,70,229,0.1); color: #4F46E5; }
+.admin-counter-icon--amber { background: rgba(245,158,11,0.1); color: #F59E0B; }
+.admin-counter-icon--green { background: rgba(22,163,74,0.1); color: #16A34A; }
+.admin-counter-icon--orange { background: rgba(217,119,6,0.1); color: #D97706; }
+.admin-counter-icon--teal { background: rgba(20,184,166,0.1); color: #14B8A6; }
+
+.admin-counter-body {
+  display: flex;
+  flex-direction: column;
+}
+
+.admin-counter-value {
+  font-size: 1.375rem;
+  font-weight: 800;
+  line-height: 1.2;
+}
+
+.admin-counter-label {
+  font-size: 0.8125rem;
+  color: var(--muted);
+}
+
+.admin-dash-activity {
+  margin-bottom: 24px;
+}
+
+.admin-dash-section-title {
+  font-size: 1.0625rem;
+  font-weight: 700;
+  margin-bottom: 14px;
+}
+
+.admin-dash-empty {
+  color: var(--muted);
+  text-align: center;
+  padding: 32px;
+}
+
+.admin-activity-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.admin-activity-card {
+  padding: 14px 18px;
+}
+
+.admin-activity-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.admin-activity-info {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.admin-activity-info strong {
+  font-size: 0.9375rem;
+}
+
+.admin-activity-info span {
+  font-size: 0.8125rem;
+  color: var(--muted);
+}
+
+.admin-activity-time {
+  font-size: 0.75rem !important;
+}
+
+.admin-activity-right {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.admin-activity-price {
+  font-weight: 600;
+  font-size: 0.9375rem;
+}

@@ -65,3 +65,39 @@
     display: none;
   }
 }
+
+/* Mobile sidebar overlay + drawer */
+.mobile-sidebar-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 200;
+}
+
+.mobile-sidebar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  width: 260px;
+  background: var(--surface);
+  border-right: 1px solid var(--border);
+  display: flex;
+  flex-direction: column;
+  z-index: 201;
+  animation: slideIn 0.2s ease;
+}
+
+@keyframes slideIn {
+  from { transform: translateX(-100%); }
+  to { transform: translateX(0); }
+}
+
+.mobile-sidebar .sidebar-nav {
+  padding: 12px 8px;
+}
+
+.mobile-sidebar .sidebar-link {
+  gap: 12px;
+  padding: 12px 14px;
+}

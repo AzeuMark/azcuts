@@ -1,0 +1,206 @@
+.sys-page {
+  max-width: 800px;
+}
+
+.sys-loading {
+  display: flex;
+  justify-content: center;
+  padding: 80px 0;
+}
+
+.sys-title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-bottom: 24px;
+}
+
+.sys-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.sys-section-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 18px;
+}
+
+.sys-section-header h2 {
+  font-size: 1.0625rem;
+  font-weight: 700;
+}
+
+.sys-form {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.sys-form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+/* Mode */
+.sys-mode-grid {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 10px;
+}
+
+.sys-mode-btn {
+  flex: 1;
+  padding: 12px 16px;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border);
+  background: var(--surface);
+  cursor: pointer;
+  transition: all 0.15s ease;
+  text-align: center;
+  font-family: inherit;
+  color: var(--text);
+}
+
+.sys-mode-name {
+  font-weight: 600;
+  font-size: 0.9375rem;
+  text-transform: capitalize;
+}
+
+.sys-mode-btn--active.sys-mode-btn--online {
+  border-color: var(--success);
+  background: rgba(22, 163, 74, 0.08);
+  color: var(--success);
+}
+
+.sys-mode-btn--active.sys-mode-btn--maintenance {
+  border-color: var(--warning);
+  background: rgba(217, 119, 6, 0.08);
+  color: var(--warning);
+}
+
+.sys-mode-btn--active.sys-mode-btn--offline {
+  border-color: var(--danger);
+  background: rgba(220, 38, 38, 0.08);
+  color: var(--danger);
+}
+
+.sys-mode-info {
+  font-size: 0.8125rem;
+  color: var(--muted);
+  margin-bottom: 14px;
+  line-height: 1.5;
+}
+
+/* Hours */
+.sys-hours-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-bottom: 16px;
+}
+
+.sys-hours-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.sys-hours-day {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  width: 120px;
+  font-size: 0.875rem;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.sys-hours-day input[type='checkbox'] {
+  accent-color: var(--accent);
+}
+
+.sys-hours-times {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.8125rem;
+  color: var(--muted);
+}
+
+.sys-hours-times input[type='time'] {
+  padding: 6px 10px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  background: var(--surface);
+  color: var(--text);
+  font-family: inherit;
+  font-size: 0.8125rem;
+}
+
+.sys-hours-closed {
+  font-size: 0.8125rem;
+  color: var(--muted);
+  font-style: italic;
+}
+
+/* Nicknames */
+.sys-nicks-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 14px;
+}
+
+.sys-nick-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 5px 12px;
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  font-size: 0.8125rem;
+  font-weight: 500;
+}
+
+.sys-nick-chip button {
+  display: flex;
+  align-items: center;
+  background: none;
+  border: none;
+  color: var(--muted);
+  cursor: pointer;
+  padding: 0;
+}
+
+.sys-nick-chip button:hover {
+  color: var(--danger);
+}
+
+.sys-nick-add {
+  display: flex;
+  gap: 8px;
+}
+
+.sys-nick-add input {
+  flex: 1;
+  padding: 8px 14px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  background: var(--surface);
+  color: var(--text);
+  font-size: 0.9375rem;
+}
+
+.sys-nick-add input::placeholder {
+  color: var(--muted);
+}
+
+.sys-nick-add input:focus {
+  outline: none;
+  border-color: var(--accent);
+}

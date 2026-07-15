@@ -23,6 +23,15 @@ export function SocketProvider({ children }) {
       reconnection: true,
       reconnectionAttempts: 10,
       reconnectionDelay: 2000,
+      reconnectionDelayMax: 10000,
+    });
+
+    socket.on('connect', () => {
+      // Connected — server assigns rooms by role
+    });
+
+    socket.on('connect_error', () => {
+      // Will auto-retry
     });
 
     socketRef.current = socket;

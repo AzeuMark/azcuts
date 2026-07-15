@@ -85,6 +85,173 @@
   gap: 10px;
 }
 
+/* Payment */
+.book-payment-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 12px;
+}
+
+.book-payment-card {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 18px 20px;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border);
+  background: var(--surface);
+  cursor: pointer;
+  transition: all 0.15s ease;
+  text-align: left;
+  font-family: inherit;
+  color: var(--text);
+}
+
+.book-payment-card:hover:not(:disabled) {
+  border-color: var(--accent);
+}
+
+.book-payment-card--active {
+  border-color: var(--accent);
+  background: var(--accent-light);
+}
+
+.book-payment-card--disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.book-payment-icon {
+  width: 44px;
+  height: 44px;
+  border-radius: var(--radius-sm);
+  background: var(--bg);
+  color: var(--muted);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.book-payment-card--active .book-payment-icon {
+  background: var(--accent);
+  color: #fff;
+}
+
+.book-payment-card div:last-child {
+  display: flex;
+  flex-direction: column;
+}
+
+.book-payment-card strong {
+  font-size: 0.9375rem;
+  font-weight: 600;
+}
+
+.book-payment-card span {
+  font-size: 0.8125rem;
+  color: var(--muted);
+}
+
+/* Confirm */
+.book-confirm-card {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.book-confirm-section {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.book-confirm-label {
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--muted);
+}
+
+.book-confirm-section strong {
+  font-size: 0.9375rem;
+}
+
+.book-confirm-extras {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.book-confirm-extra {
+  font-size: 0.8125rem;
+  padding: 3px 10px;
+  background: var(--bg);
+  border-radius: 999px;
+  border: 1px solid var(--border);
+}
+
+.book-confirm-note {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 0.8125rem;
+  color: var(--warning);
+  font-weight: 500;
+}
+
+.book-confirm-divider {
+  height: 1px;
+  background: var(--border);
+  border: none;
+  border-top: 1px dashed var(--border);
+}
+
+.book-confirm-total {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 1.125rem;
+}
+
+.book-confirm-total strong {
+  font-size: 1.375rem;
+  color: var(--accent);
+}
+
+.book-confirm-disclaimer {
+  font-size: 0.75rem;
+  color: var(--muted);
+  text-align: center;
+  font-style: italic;
+}
+
+/* Receipt */
+.book-receipt-header {
+  text-align: center;
+  margin-bottom: 24px;
+}
+
+.book-receipt-check {
+  color: var(--success);
+  margin-bottom: 8px;
+}
+
+.book-receipt-sub {
+  color: var(--muted);
+  font-size: 0.9375rem;
+  margin-top: 4px;
+}
+
+.book-receipt-actions {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  margin-top: 24px;
+}
+
+/* Nav */
 .book-nav {
   display: flex;
   align-items: center;

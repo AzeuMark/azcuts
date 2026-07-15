@@ -1,0 +1,131 @@
+.um-page {
+  max-width: 1100px;
+}
+
+.um-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.um-title {
+  font-size: 1.5rem;
+  font-weight: 700;
+}
+
+.um-filters {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.um-search {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 0 14px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  flex: 1;
+  max-width: 320px;
+  color: var(--muted);
+}
+
+.um-search input {
+  border: none;
+  background: none;
+  padding: 10px 0;
+  font-size: 0.9375rem;
+  color: var(--text);
+  outline: none;
+  width: 100%;
+}
+
+.um-search input::placeholder {
+  color: var(--muted);
+}
+
+.um-filters select {
+  padding: 10px 14px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  color: var(--text);
+  font-size: 0.9375rem;
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%236B7280' stroke-width='2'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 12px center;
+  padding-right: 36px;
+}
+
+.um-table-wrap {
+  padding: 0;
+}
+
+.um-user-cell {
+  display: flex;
+  flex-direction: column;
+}
+
+.um-user-cell strong {
+  font-size: 0.9375rem;
+}
+
+.um-user-cell span {
+  font-size: 0.8125rem;
+  color: var(--muted);
+}
+
+.um-actions {
+  display: flex;
+  gap: 6px;
+}
+
+.um-action-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 30px;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border);
+  background: var(--surface);
+  color: var(--muted);
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.um-action-btn:hover {
+  background: var(--bg);
+  color: var(--text);
+}
+
+.um-action-btn--danger:hover {
+  color: var(--danger);
+  border-color: var(--danger);
+}
+
+.um-form {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.um-form-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+  margin-top: 4px;
+}
+
+@media (max-width: 640px) {
+  .um-filters {
+    flex-direction: column;
+  }
+  .um-search {
+    max-width: none;
+  }
+}

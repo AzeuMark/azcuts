@@ -29,14 +29,14 @@
 - [x] **Phase 1 — Auth & guards** — login/register, role-gated routes, silent refresh.
 - [x] **Phase 2 — Landing page** — hero, services, about, contact, location.
 - [x] **Phase 3 — Inventory display + booking data** — ServiceCard, SlotPicker, StaffPicker.
-- [ ] **Phase 4 — Booking wizard end-to-end** — 5 steps → receipt + PNG.
-- [ ] **Phase 5 — User history + ratings** — table, cancel, rating modal.
-- [ ] **Phase 6 — Staff portal** — dashboard lifecycle, shift, history/stats.
-- [ ] **Phase 7 — Admin portal** — dashboard, user manager, histories.
-- [ ] **Phase 8 — Admin inventory & settings** — inventory CRUD, system settings.
-- [ ] **Phase 9 — Analytics & reports** — charts, filters, export.
-- [ ] **Phase 10 — Real-time + polish** — sockets, toasts, a11y/responsive.
-- [ ] **Phase 11 — Deployment setup** — build + serve + prod config.
+- [x] **Phase 4 — Booking wizard end-to-end** — 5 steps → receipt + PNG.
+- [x] **Phase 5 — User history + ratings** — table, cancel, rating modal.
+- [x] **Phase 6 — Staff portal** — dashboard lifecycle, shift, history/stats.
+- [x] **Phase 7 — Admin portal** — dashboard, user manager, histories.
+- [x] **Phase 8 — Admin inventory & settings** — inventory CRUD, system settings.
+- [x] **Phase 9 — Analytics & reports** — charts, filters, export.
+- [x] **Phase 10 — Real-time + polish** — sockets, toasts, a11y/responsive.
+- [x] **Phase 11 — Deployment setup** — build + serve + prod config.
 
 ---
 
@@ -47,3 +47,11 @@
 | 2026-07-15 | Client | Phase 1 | Auth & guards | Login with mode-block handling (503 alert), Register (customer-only), AuthContext (login/register/logout/refresh), ProtectedRoute + RoleGate, silent refresh via Axios interceptor, User Settings (profile + password forms). Build passes. |
 | 2026-07-15 | Client | Phase 2 | Landing page | Full landing: hero with stats/badge, services gallery with category tabs (all/haircut/salon), about section with team, contact cards (phone/email/socials), location with embedded map + store hours, footer. Fetches from /settings/public. ServiceCard component created. Responsive + theme-aware. Build passes. |
 | 2026-07-15 | Client | Phase 3 | Inventory display + booking data | ExtraChip, SlotPicker (date grid + time slots), StaffPicker (auto-assign + manual), StepIndicator, BookWizard steps 1-3 live (service select, extras multi-select, schedule with slot+staff). Running total bar. useBooking reducer. Steps 4-5 placeholder. Build passes. |
+| 2026-07-15 | Client | Phase 4 | Booking wizard end-to-end | Payment step (Cash selectable, GCash disabled/coming soon), Confirm step (summary with service/extras/slot/staff/payment/total + disclaimer), ReceiptCard (header, receipt no, datetime, service, extras, staff, totals with discount/tax, payment, download PNG), appointment creation via API, success screen with receipt + new booking/history buttons. Build passes. |
+| 2026-07-15 | Client | Phase 5 | User history + ratings | DataTable (sortable, paginated), StatusBadge (colored pills), RatingStars (interactive 1-5), User History page with appointment table, cancel dialog (reason input, pending/accepted only), rating modal (stars + comment, done only), receipt view modal, live socket updates (appointment:updated → auto-refresh + rating prompt). Build passes. |
+| 2026-07-15 | Client | Phase 6 | Staff portal | Staff Dashboard (incoming panel with accept/reject + reject reason dialog, active queue with start/finish lifecycle, shift toggle button), Staff History (3 stat cards: total served, avg rating, completed; history table; ratings/comments list), Staff Settings (profile + password + nickname dropdown from Settings.nicknames). Socket live updates for appointment:new + appointment:updated. Build passes. |
+| 2026-07-15 | Client | Phase 7 | Admin portal | Admin Dashboard (6 counter cards: active staff, in-service, customers today, sales today, pending, total today; recent appointments feed; socket live refresh), User Manager (paginated 20/pp DataTable, search + role filter, create/edit/delete users, staff role + nickname selection), Staff History (paginated with ratings), User History (paginated). Build passes. |
+| 2026-07-15 | Client | Phase 8 | Admin inventory & settings | Inventory page (Services + Extras tabs, CRUD with image upload, active toggle, card grid for services, list for extras), System Settings (system mode selector with info, timezone/region/country/currency/tax/slotStep, store hours per weekday with open/close/closed, nickname manager add/remove, shop info form with name/tagline/phone/email/address/map/socials). Build passes. |
+| 2026-07-15 | Client | Phase 9 | Analytics & reports | ChartPanel component (LineChartPanel, BarChartPanel, PieChartPanel using Recharts), Analytics page with 5 range filter tabs (daily/weekly/monthly/yearly/all-time), 4 KPI cards (revenue, appointments, customers, avg), 4 charts (sales over time, top services, status split pie, revenue by staff), CSV/JSON report export with blob download. Build passes. |
+| 2026-07-15 | Client | Phase 10 | Real-time + polish | Global SocketEvents component (appointment:new, :updated, :assigned, dashboard:refresh, rating:added → toast notifications + query invalidation), themed Toaster, SocketContext with reconnection, skip-to-content link, aria landmarks (sidebar nav, main content, mobile nav), mobile sidebar drawer with hamburger menu + overlay, reduced-motion media query, responsive improvements. Build passes. |
+| 2026-07-15 | Client | Phase 11 | Deployment setup | Vite config (chunkSizeWarningLimit), .env.production template, DEPLOY.md with 4 deployment options (Vercel, Netlify, Nginx, Express), vercel.json SPA rewrites, public/_redirects for Netlify, CORS checklist, post-deploy checklist. Build passes. |

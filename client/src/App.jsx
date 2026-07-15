@@ -2,6 +2,7 @@ import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import { Toaster } from 'react-hot-toast';
 import ProtectedRoute from './components/ProtectedRoute';
 import DashboardShell from './components/layout/DashboardShell';
+import SocketEvents from './components/SocketEvents';
 
 // Public pages
 import Landing from './pages/public/Landing';
@@ -32,7 +33,22 @@ import SystemSettings from './pages/admin/SystemSettings';
 export default function App() {
   return (
     <BrowserRouter>
-      <Toaster position="top-right" toastOptions={{ duration: 3000 }} />
+      <Toaster
+        position="top-right"
+        toastOptions={{
+          duration: 3000,
+          style: {
+            background: 'var(--surface)',
+            color: 'var(--text)',
+            border: '1px solid var(--border)',
+            borderRadius: 'var(--radius-sm)',
+            fontSize: '0.875rem',
+          },
+          success: { iconTheme: { primary: 'var(--success)', secondary: '#fff' } },
+          error: { iconTheme: { primary: 'var(--danger)', secondary: '#fff' } },
+        }}
+      />
+      <SocketEvents />
       <Routes>
         {/* Public */}
         <Route path="/" element={<Landing />} />

@@ -1,0 +1,108 @@
+.history-page {
+  max-width: 1000px;
+}
+
+.history-title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-bottom: 20px;
+}
+
+.history-table-wrap {
+  padding: 0;
+}
+
+.history-actions {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.history-action-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 30px;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border);
+  background: var(--surface);
+  color: var(--muted);
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.history-action-btn:hover {
+  background: var(--bg);
+  color: var(--text);
+}
+
+.history-action-btn--danger:hover {
+  color: var(--danger);
+  border-color: var(--danger);
+}
+
+.history-action-btn--star {
+  color: #F59E0B;
+  border-color: rgba(245, 158, 11, 0.3);
+}
+
+.history-action-btn--star:hover {
+  background: rgba(245, 158, 11, 0.1);
+}
+
+.history-rated {
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  color: #F59E0B;
+}
+
+/* Cancel Dialog */
+.cancel-dialog {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.cancel-dialog p {
+  font-size: 0.9375rem;
+  color: var(--muted);
+}
+
+.cancel-service {
+  font-weight: 600;
+  color: var(--text) !important;
+}
+
+.cancel-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+}
+
+/* Rating Dialog */
+.rating-dialog {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.rating-service {
+  font-weight: 600;
+  font-size: 0.9375rem;
+  text-align: center;
+}
+
+.rating-stars-wrap {
+  display: flex;
+  justify-content: center;
+}
+
+.rating-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+}

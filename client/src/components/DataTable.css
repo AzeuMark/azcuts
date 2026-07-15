@@ -1,0 +1,82 @@
+.dt-wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.dt-loading {
+  display: flex;
+  justify-content: center;
+  padding: 48px;
+}
+
+.dt-scroll {
+  overflow-x: auto;
+}
+
+.dt {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.dt th {
+  text-align: left;
+  padding: 10px 14px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--muted);
+  border-bottom: 1px solid var(--border);
+  white-space: nowrap;
+}
+
+.dt td {
+  padding: 12px 14px;
+  font-size: 0.9375rem;
+  border-bottom: 1px solid var(--border);
+  color: var(--text);
+}
+
+.dt-row--clickable {
+  cursor: pointer;
+}
+
+.dt-row--clickable:hover td {
+  background: var(--bg);
+}
+
+.dt-pagination {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+}
+
+.dt-page-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border);
+  background: var(--surface);
+  color: var(--text);
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.dt-page-btn:hover:not(:disabled) {
+  background: var(--bg);
+}
+
+.dt-page-btn:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.dt-page-info {
+  font-size: 0.8125rem;
+  color: var(--muted);
+}

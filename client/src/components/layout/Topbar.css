@@ -9,6 +9,24 @@
   flex-shrink: 0;
 }
 
+.topbar-left {
+  display: flex;
+  align-items: center;
+}
+
+.topbar-menu-btn {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: var(--radius-sm);
+  border: none;
+  background: transparent;
+  color: var(--text);
+  cursor: pointer;
+}
+
 .topbar-right {
   display: flex;
   align-items: center;
@@ -60,5 +78,11 @@
 @media (max-width: 768px) {
   .topbar-username {
     display: none;
+  }
+  .topbar-menu-btn {
+    display: flex;
+  }
+  .topbar {
+    padding: 0 16px;
   }
 }

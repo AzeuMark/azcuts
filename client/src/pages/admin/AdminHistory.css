@@ -1,0 +1,13 @@
+.admin-hist-page {
+  max-width: 1100px;
+}
+
+.admin-hist-title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-bottom: 20px;
+}
+
+.admin-hist-table {
+  padding: 0;
+}
