@@ -1,0 +1,77 @@
+.landing {
+  min-height: 100vh;
+}
+
+.landing-hero {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 80vh;
+  padding: 60px 24px;
+  text-align: center;
+  background: linear-gradient(135deg, var(--accent-light) 0%, var(--bg) 100%);
+}
+
+.landing-hero-content {
+  max-width: 640px;
+}
+
+.landing-hero-title {
+  font-size: 3rem;
+  font-weight: 800;
+  line-height: 1.1;
+  margin-bottom: 16px;
+  color: var(--text);
+}
+
+.landing-hero-sub {
+  font-size: 1.125rem;
+  color: var(--muted);
+  margin-bottom: 32px;
+  line-height: 1.6;
+}
+
+.landing-hero-actions {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+}
+
+.landing-section {
+  padding: 64px 24px;
+  max-width: 1200px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.landing-section--alt {
+  background: var(--surface);
+}
+
+.landing-section-title {
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 12px;
+}
+
+.landing-section-sub {
+  color: var(--muted);
+  font-size: 1rem;
+}
+
+.landing-section-text {
+  color: var(--muted);
+  font-size: 1rem;
+  max-width: 600px;
+  margin: 0 auto;
+  line-height: 1.6;
+}
+
+@media (max-width: 640px) {
+  .landing-hero-title {
+    font-size: 2rem;
+  }
+  .landing-hero-actions {
+    flex-direction: column;
+  }
+}

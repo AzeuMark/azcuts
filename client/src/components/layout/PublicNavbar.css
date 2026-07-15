@@ -1,0 +1,83 @@
+.public-nav {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: var(--surface);
+  border-bottom: 1px solid var(--border);
+  backdrop-filter: blur(8px);
+}
+
+.public-nav-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 12px 24px;
+}
+
+.public-nav-brand {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 700;
+  font-size: 1.25rem;
+  color: var(--text);
+}
+
+.public-nav-links {
+  display: flex;
+  gap: 28px;
+}
+
+.public-nav-links a {
+  font-size: 0.9375rem;
+  font-weight: 500;
+  color: var(--muted);
+  transition: color 0.15s;
+}
+
+.public-nav-links a:hover {
+  color: var(--text);
+}
+
+.public-nav-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.public-nav-hamburger {
+  display: none;
+  background: none;
+  border: none;
+  color: var(--text);
+  padding: 4px;
+}
+
+@media (max-width: 768px) {
+  .public-nav-links {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    flex-direction: column;
+    background: var(--surface);
+    border-bottom: 1px solid var(--border);
+    padding: 16px 24px;
+    gap: 16px;
+  }
+
+  .public-nav-links--open {
+    display: flex;
+  }
+
+  .public-nav-hamburger {
+    display: flex;
+  }
+
+  .public-nav-actions .btn:not(.btn--ghost) {
+    display: none;
+  }
+}
