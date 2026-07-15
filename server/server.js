@@ -4,9 +4,8 @@ import bootstrap from './config/bootstrap.js';
 import app from './app.js';
 
 async function start() {
-  bootstrap();
-
   await connectDB();
+  await bootstrap();
 
   app.listen(env.port, () => {
     console.log(`AzCuts server running on port ${env.port}`);

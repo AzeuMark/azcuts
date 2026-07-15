@@ -17,6 +17,6 @@ export default function errorHandler(err, req, res, _next) {
     return res.status(400).json({ success: false, message: 'Unexpected file field' });
   }
 
-  console.error('Unhandled error:', err);
+  console.error('Unhandled error:', err.message);
   return res.status(500).json({ success: false, message: 'Internal server error' });
 }

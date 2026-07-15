@@ -13,7 +13,7 @@
 
 ## SERVER PHASES
 - [x] **Phase 0 — Skeleton** — folders, deps, app/server, DB connect, health route.
-- [ ] **Phase 1 — Models & Auth** — models, JWT register/login/refresh/logout/me, middleware.
+- [x] **Phase 1 — Models & Auth** — models, JWT register/login/refresh/logout/me, middleware.
 - [ ] **Phase 2 — Inventory** — services + extras CRUD + image upload + public GET.
 - [ ] **Phase 3 — Scheduling & Booking core** — slots, pricing, create booking, receiptNo.
 - [ ] **Phase 4 — State machine & Staff flow** — transitions, accept/reject/start/finish, auto-assign, cancel.
@@ -56,3 +56,4 @@
 | 2026-07-15 | Client | Phase 10 | Real-time + polish | Global SocketEvents component (appointment:new, :updated, :assigned, dashboard:refresh, rating:added → toast notifications + query invalidation), themed Toaster, SocketContext with reconnection, skip-to-content link, aria landmarks (sidebar nav, main content, mobile nav), mobile sidebar drawer with hamburger menu + overlay, reduced-motion media query, responsive improvements. Build passes. |
 | 2026-07-15 | Client | Phase 11 | Deployment setup | Vite config (chunkSizeWarningLimit), .env.production template, DEPLOY.md with 4 deployment options (Vercel, Netlify, Nginx, Express), vercel.json SPA rewrites, public/_redirects for Netlify, CORS checklist, post-deploy checklist. Build passes. |
 | 2026-07-15 | Server | Phase 0 | Project skeleton | Express + Mongoose + all deps, config (env/db/bootstrap), middleware (error/validate), utils (ApiError/asyncHandler/response/logger), app.js + server.js, health route, .env, seed files moved. Server connects to MongoDB, /api/health returns 200. |
+| 2026-07-15 | Server | Phase 1 | Models & Auth | All 6 Mongoose models (User, Service, Extra, Appointment, Settings, RefreshToken), auth middleware (verifyAccessToken + requireRole), auth service (sign/verify tokens, register, login, refresh, logout), auth controller + routes, auth validators, bootstrap seeds settings + admin on first boot. Admin can login, customer can register+login. Express 4 (downgraded from 5 for middleware compat). Mongoose 9 pre-save hook fix (no next). JWT jti for unique tokens. |
