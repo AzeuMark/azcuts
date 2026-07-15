@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { useNavigate, useLocation, Link } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
+import { AlertTriangle } from 'lucide-react';
 import { useAuth } from '../../context/AuthContext';
 import PublicNavbar from '../../components/layout/PublicNavbar';
 import Input from '../../components/ui/Input';
@@ -13,18 +14,25 @@ export default function Login() {
   const navigate = useNavigate();
   const location = useLocation();
   const [loading, setLoading] = useState(false);
+  const [modeBlock, setModeBlock] = useState(null);
   const { register, handleSubmit, formState: { errors } } = useForm();
-
-  const from = location.state?.from?.pathname || '/app';
 
   const onSubmit = async ({ email, password }) => {
     setLoading(true);
+    setModeBlock(null);
     try {
       const user = await login(email, password);
       const dest = user.role === 'admin' ? '/admin' : user.role === 'staff' ? '/staff' : '/app';
-      navigate(dest, { replace: true });
+      const from = location.state?.from?.pathname;
+      navigate(from && from !== '/login' ? from : dest, { replace: true });
     } catch (err) {
-      toast.error(err.response?.data?.message || 'Login failed');
+      const status = err.response?.status;
+      const msg = err.response?.data?.message || 'Login failed';
+      if (status === 503) {
+        setModeBlock(msg);
+      } else {
+        toast.error(msg);
+      }
     } finally {
       setLoading(false);
     }
@@ -37,6 +45,14 @@ export default function Login() {
         <div className="auth-card">
           <h1 className="auth-title">Welcome Back</h1>
           <p className="auth-sub">Sign in to your AzCuts account</p>
+
+          {modeBlock && (
+            <div className="auth-alert auth-alert--warning">
+              <AlertTriangle size={18} />
+              <span>{modeBlock}</span>
+            </div>
+          )}
+
           <form className="auth-form" onSubmit={handleSubmit(onSubmit)}>
             <Input
               label="Email"

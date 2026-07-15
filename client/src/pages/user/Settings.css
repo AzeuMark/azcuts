@@ -1,0 +1,28 @@
+.settings-grid {
+  display: grid;
+  gap: 24px;
+  max-width: 640px;
+}
+
+.settings-card-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 20px;
+  color: var(--text);
+}
+
+.settings-card-header h2 {
+  font-size: 1.0625rem;
+  font-weight: 600;
+}
+
+.settings-form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.settings-form .btn {
+  align-self: flex-start;
+}

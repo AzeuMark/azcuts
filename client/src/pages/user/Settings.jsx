@@ -1,16 +1,122 @@
-import { Settings as SettingsIcon } from 'lucide-react';
+import { useState } from 'react';
+import { useForm } from 'react-hook-form';
+import { User, Lock } from 'lucide-react';
+import { useAuth } from '../../context/AuthContext';
+import { userApi } from '../../api/user.api';
 import Card from '../../components/ui/Card';
+import Input from '../../components/ui/Input';
+import Button from '../../components/ui/Button';
+import toast from 'react-hot-toast';
+import './Settings.css';
 
 export default function UserSettings() {
+  const { user } = useAuth();
+
   return (
     <div>
       <h1 style={{ fontSize: '1.5rem', fontWeight: 700, marginBottom: 24 }}>Settings</h1>
-      <Card>
-        <div style={{ textAlign: 'center', padding: '48px 24px', color: 'var(--muted)' }}>
-          <SettingsIcon size={48} strokeWidth={1} style={{ marginBottom: 12 }} />
-          <p>Profile settings coming in Phase 1</p>
-        </div>
-      </Card>
+      <div className="settings-grid">
+        <ProfileForm user={user} />
+        <PasswordForm />
+      </div>
     </div>
+  );
+}
+
+function ProfileForm({ user }) {
+  const [loading, setLoading] = useState(false);
+  const { register, handleSubmit, formState: { errors } } = useForm({
+    defaultValues: {
+      fullName: user?.fullName || '',
+      email: user?.email || '',
+      phone: user?.phone || '',
+      address: user?.address || '',
+    },
+  });
+
+  const onSubmit = async (values) => {
+    setLoading(true);
+    try {
+      await userApi.updateProfile(values);
+      toast.success('Profile updated');
+    } catch (err) {
+      toast.error(err.response?.data?.message || 'Update failed');
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  return (
+    <Card>
+      <div className="settings-card-header">
+        <User size={20} />
+        <h2>Profile</h2>
+      </div>
+      <form className="settings-form" onSubmit={handleSubmit(onSubmit)}>
+        <Input label="Full Name" error={errors.fullName?.message} {...register('fullName', { required: 'Required' })} />
+        <Input label="Email" type="email" error={errors.email?.message} {...register('email', { required: 'Required' })} />
+        <Input label="Phone" placeholder="09XX XXX XXXX" {...register('phone')} />
+        <Input label="Address" placeholder="Optional" {...register('address')} />
+        <Button type="submit" disabled={loading}>{loading ? 'Saving...' : 'Save Changes'}</Button>
+      </form>
+    </Card>
+  );
+}
+
+function PasswordForm() {
+  const [loading, setLoading] = useState(false);
+  const { register, handleSubmit, watch, reset, formState: { errors } } = useForm();
+  const newPassword = watch('newPassword');
+
+  const onSubmit = async (values) => {
+    setLoading(true);
+    try {
+      await userApi.changePassword({
+        currentPassword: values.currentPassword,
+        newPassword: values.newPassword,
+      });
+      toast.success('Password changed');
+      reset();
+    } catch (err) {
+      toast.error(err.response?.data?.message || 'Password change failed');
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  return (
+    <Card>
+      <div className="settings-card-header">
+        <Lock size={20} />
+        <h2>Change Password</h2>
+      </div>
+      <form className="settings-form" onSubmit={handleSubmit(onSubmit)}>
+        <Input
+          label="Current Password"
+          type="password"
+          error={errors.currentPassword?.message}
+          {...register('currentPassword', { required: 'Required' })}
+        />
+        <Input
+          label="New Password"
+          type="password"
+          error={errors.newPassword?.message}
+          {...register('newPassword', {
+            required: 'Required',
+            minLength: { value: 6, message: 'At least 6 characters' },
+          })}
+        />
+        <Input
+          label="Confirm New Password"
+          type="password"
+          error={errors.confirmNewPassword?.message}
+          {...register('confirmNewPassword', {
+            required: 'Required',
+            validate: (v) => v === newPassword || 'Passwords do not match',
+          })}
+        />
+        <Button type="submit" disabled={loading}>{loading ? 'Saving...' : 'Change Password'}</Button>
+      </form>
+    </Card>
   );
 }

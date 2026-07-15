@@ -26,7 +26,7 @@
 
 ## CLIENT PHASES
 - [x] **Phase 0 — Skeleton & design system** — router, providers, theme tokens + light/dark toggle, UI kit.
-- [ ] **Phase 1 — Auth & guards** — login/register, role-gated routes, silent refresh.
+- [x] **Phase 1 — Auth & guards** — login/register, role-gated routes, silent refresh.
 - [ ] **Phase 2 — Landing page** — hero, services, about, contact, location.
 - [ ] **Phase 3 — Inventory display + booking data** — ServiceCard, SlotPicker, StaffPicker.
 - [ ] **Phase 4 — Booking wizard end-to-end** — 5 steps → receipt + PNG.
@@ -44,3 +44,4 @@
 | Date | Side | Phase | What was implemented | Notes |
 |------|------|-------|----------------------|-------|
 | 2026-07-15 | Client | Phase 0 | Skeleton & design system | Vite init, all deps, theme tokens (light/dark), 10 UI components, layout shell, contexts, routes, page stubs, Axios, React Query, Socket.io, no-flash theme script. Build passes. |
+| 2026-07-15 | Client | Phase 1 | Auth & guards | Login with mode-block handling (503 alert), Register (customer-only), AuthContext (login/register/logout/refresh), ProtectedRoute + RoleGate, silent refresh via Axios interceptor, User Settings (profile + password forms). Build passes. |
