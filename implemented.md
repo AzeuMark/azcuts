@@ -12,7 +12,7 @@
 ---
 
 ## SERVER PHASES
-- [ ] **Phase 0 — Skeleton** — folders, deps, app/server, DB connect, health route.
+- [x] **Phase 0 — Skeleton** — folders, deps, app/server, DB connect, health route.
 - [ ] **Phase 1 — Models & Auth** — models, JWT register/login/refresh/logout/me, middleware.
 - [ ] **Phase 2 — Inventory** — services + extras CRUD + image upload + public GET.
 - [ ] **Phase 3 — Scheduling & Booking core** — slots, pricing, create booking, receiptNo.
@@ -55,3 +55,4 @@
 | 2026-07-15 | Client | Phase 9 | Analytics & reports | ChartPanel component (LineChartPanel, BarChartPanel, PieChartPanel using Recharts), Analytics page with 5 range filter tabs (daily/weekly/monthly/yearly/all-time), 4 KPI cards (revenue, appointments, customers, avg), 4 charts (sales over time, top services, status split pie, revenue by staff), CSV/JSON report export with blob download. Build passes. |
 | 2026-07-15 | Client | Phase 10 | Real-time + polish | Global SocketEvents component (appointment:new, :updated, :assigned, dashboard:refresh, rating:added → toast notifications + query invalidation), themed Toaster, SocketContext with reconnection, skip-to-content link, aria landmarks (sidebar nav, main content, mobile nav), mobile sidebar drawer with hamburger menu + overlay, reduced-motion media query, responsive improvements. Build passes. |
 | 2026-07-15 | Client | Phase 11 | Deployment setup | Vite config (chunkSizeWarningLimit), .env.production template, DEPLOY.md with 4 deployment options (Vercel, Netlify, Nginx, Express), vercel.json SPA rewrites, public/_redirects for Netlify, CORS checklist, post-deploy checklist. Build passes. |
+| 2026-07-15 | Server | Phase 0 | Project skeleton | Express + Mongoose + all deps, config (env/db/bootstrap), middleware (error/validate), utils (ApiError/asyncHandler/response/logger), app.js + server.js, health route, .env, seed files moved. Server connects to MongoDB, /api/health returns 200. |
