@@ -17,6 +17,7 @@ const env = {
   refreshTokenTTL: process.env.REFRESH_TOKEN_TTL || '7d',
   clientOrigin: process.env.CLIENT_ORIGIN || 'http://localhost:3000',
   defaultTz: process.env.DEFAULT_TZ || 'Asia/Manila',
+  nodeEnv: process.env.NODE_ENV || 'development',
 };
 
 export default env;
