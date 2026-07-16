@@ -8,6 +8,8 @@ const serviceSchema = new mongoose.Schema(
     price: { type: Number, required: true, min: 0 },
     durationMinutes: { type: Number, required: true, default: 30, min: 1 },
     image: { type: String, default: '' },
+    imageData: { type: Buffer, select: false },
+    imageContentType: { type: String, select: false },
     isActive: { type: Boolean, default: true },
   },
   { timestamps: true }

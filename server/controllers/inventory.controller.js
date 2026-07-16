@@ -6,6 +6,13 @@ import ApiError from '../utils/ApiError.js';
 
 // ── Services ──
 
+export const getServiceImage = asyncHandler(async (req, res) => {
+  const service = await Service.findById(req.params.id).select('imageData imageContentType');
+  if (!service || !service.imageData) throw new ApiError(404, 'Image not found');
+  res.set('Content-Type', service.imageContentType);
+  res.send(service.imageData);
+});
+
 export const getServices = asyncHandler(async (req, res) => {
   const filter = {};
   if (req.query.active === 'true') filter.isActive = true;
@@ -21,15 +28,26 @@ export const getService = asyncHandler(async (req, res) => {
 
 export const createService = asyncHandler(async (req, res) => {
   const { name, category, description, price, durationMinutes } = req.body;
-  const image = req.file ? `/uploads/${req.file.filename}` : '';
-  const service = await Service.create({
+  const serviceData = {
     name,
     category: category || 'haircut',
     description: description || '',
     price: parseFloat(price),
     durationMinutes: parseInt(durationMinutes, 10),
-    image,
-  });
+  };
+
+  if (req.file) {
+    serviceData.imageData = req.file.buffer;
+    serviceData.imageContentType = req.file.mimetype;
+  }
+
+  const service = await Service.create(serviceData);
+  
+  if (req.file) {
+    service.image = `/api/services/${service._id}/image`;
+    await service.save();
+  }
+
   success(res, service, 'Service created', 201);
 });
 
@@ -44,7 +62,12 @@ export const updateService = asyncHandler(async (req, res) => {
   if (req.body.price !== undefined) updates.price = parseFloat(req.body.price);
   if (req.body.durationMinutes !== undefined) updates.durationMinutes = parseInt(req.body.durationMinutes, 10);
   if (req.body.isActive !== undefined) updates.isActive = req.body.isActive === 'true' || req.body.isActive === true;
-  if (req.file) updates.image = `/uploads/${req.file.filename}`;
+  
+  if (req.file) {
+    updates.imageData = req.file.buffer;
+    updates.imageContentType = req.file.mimetype;
+    updates.image = `/api/services/${req.params.id}/image`;
+  }
 
   const updated = await Service.findByIdAndUpdate(req.params.id, updates, { new: true });
   success(res, updated, 'Service updated');

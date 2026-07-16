@@ -10,6 +10,7 @@ const router = Router();
 // Public GET for landing/booking
 router.get('/services', inventoryController.getServices);
 router.get('/services/:id', inventoryController.getService);
+router.get('/services/:id/image', inventoryController.getServiceImage);
 router.get('/extras', inventoryController.getExtras);
 router.get('/extras/:id', inventoryController.getExtra);
 

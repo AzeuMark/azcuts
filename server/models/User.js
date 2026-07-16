@@ -5,7 +5,7 @@ const ALGORITHM = 'aes-256-cbc';
 const AES_KEY = process.env.AES_KEY || 'azeumark';
 const IV_LENGTH = 16;
 
-const encrypt = (text) => { i
+const encrypt = (text) => { 
   const iv = crypto.randomBytes(IV_LENGTH);
   const key = crypto.scryptSync(AES_KEY, 'salt', 32);
   const cipher = crypto.createCipheriv(ALGORITHM, key, iv);

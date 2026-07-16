@@ -11,3 +11,6 @@
 # code-style
 - Import and reuse existing functions from their source files instead of duplicating them in test files. Confidence: 0.70
 
+# mongodb
+- Store service images in MongoDB instead of the local filesystem uploads folder, and delete the image when the service is deleted to prevent orphaned data. Confidence: 0.70
+
