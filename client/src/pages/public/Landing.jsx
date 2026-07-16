@@ -1,9 +1,11 @@
-import { useState, useMemo } from 'react';
+import { useState, useMemo, useEffect, useRef, useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useQuery } from '@tanstack/react-query';
-import { Scissors, Sparkles, Phone, Mail, MapPin, Clock, ExternalLink, ChevronRight } from 'lucide-react';
+import {
+  Scissors, Sparkles, Phone, Mail, MapPin, Clock, ExternalLink,
+  ChevronRight, ChevronLeft, ChevronDown, Star, Zap,
+} from 'lucide-react';
 import PublicNavbar from '../../components/layout/PublicNavbar';
-import ServiceCard from '../../components/ServiceCard';
 import Button from '../../components/ui/Button';
 import Spinner from '../../components/ui/Spinner';
 import { settingsApi } from '../../api/settings.api';
@@ -19,6 +21,10 @@ const CATEGORY_TABS = [
 export default function Landing() {
   const navigate = useNavigate();
   const [activeCategory, setActiveCategory] = useState('all');
+  const [currentSlide, setCurrentSlide] = useState(0);
+  const [isPaused, setIsPaused] = useState(false);
+  const touchStartX = useRef(0);
+  const touchEndX = useRef(0);
 
   const { data: publicData, isLoading } = useQuery({
     queryKey: ['publicSettings'],
@@ -37,20 +43,58 @@ export default function Landing() {
     return services.filter((s) => s.category === activeCategory);
   }, [services, activeCategory]);
 
+  /* ── Slideshow logic ── */
+  useEffect(() => {
+    setCurrentSlide(0);
+  }, [activeCategory]);
+
+  useEffect(() => {
+    if (filteredServices.length <= 1 || isPaused) return;
+    const timer = setInterval(() => {
+      setCurrentSlide((prev) => (prev + 1) % filteredServices.length);
+    }, 5000);
+    return () => clearInterval(timer);
+  }, [filteredServices.length, isPaused]);
+
+  const goToSlide = useCallback((i) => setCurrentSlide(i), []);
+
+  const prevSlide = useCallback(() => {
+    setCurrentSlide((prev) => (prev === 0 ? filteredServices.length - 1 : prev - 1));
+  }, [filteredServices.length]);
+
+  const nextSlide = useCallback(() => {
+    setCurrentSlide((prev) => (prev + 1) % filteredServices.length);
+  }, [filteredServices.length]);
+
+  const handleTouchStart = (e) => { touchStartX.current = e.touches[0].clientX; };
+  const handleTouchMove = (e) => { touchEndX.current = e.touches[0].clientX; };
+  const handleTouchEnd = () => {
+    const diff = touchStartX.current - touchEndX.current;
+    if (Math.abs(diff) > 50) diff > 0 ? nextSlide() : prevSlide();
+  };
+
   const weekDays = ['mon', 'tue', 'wed', 'thu', 'fri', 'sat', 'sun'];
-  const dayLabels = { mon: 'Monday', tue: 'Tuesday', wed: 'Wednesday', thu: 'Thursday', fri: 'Friday', sat: 'Saturday', sun: 'Sunday' };
+  const dayLabels = {
+    mon: 'Monday', tue: 'Tuesday', wed: 'Wednesday', thu: 'Thursday',
+    fri: 'Friday', sat: 'Saturday', sun: 'Sunday',
+  };
 
   return (
     <div className="landing">
       <PublicNavbar />
 
-      {/* Hero */}
+      {/* ─── Hero ─── */}
       <section className="landing-hero">
-        <div className="landing-hero-bg" />
+        <div className="landing-hero-bg">
+          <div className="landing-hero-shape landing-hero-shape--1" />
+          <div className="landing-hero-shape landing-hero-shape--2" />
+          <div className="landing-hero-shape landing-hero-shape--3" />
+        </div>
+
         <div className="landing-hero-content">
           <div className="landing-hero-badge">
             <Scissors size={14} />
-            <span>Barber Shop & Salon</span>
+            <span>Barber Shop &amp; Salon</span>
           </div>
           <h1 className="landing-hero-title">
             Sharp Looks,<br />Effortless Booking
@@ -62,60 +106,137 @@ export default function Landing() {
             <Button size="lg" onClick={() => navigate('/register')}>
               Book Now <ChevronRight size={18} />
             </Button>
-            <Button variant="secondary" size="lg" onClick={() => navigate('/login')}>
+            <Button variant="ghost" size="lg" className="landing-btn-outline" onClick={() => navigate('/login')}>
               Login
             </Button>
           </div>
           <div className="landing-hero-stats">
             <div className="landing-hero-stat">
+              <Star size={18} />
               <span className="landing-hero-stat-num">{services.length}+</span>
               <span className="landing-hero-stat-label">Services</span>
             </div>
             <div className="landing-hero-stat">
+              <Zap size={18} />
               <span className="landing-hero-stat-num">100%</span>
               <span className="landing-hero-stat-label">Online Booking</span>
             </div>
             <div className="landing-hero-stat">
+              <Clock size={18} />
               <span className="landing-hero-stat-num">Fast</span>
-              <span className="landing-hero-stat-label">& Easy</span>
+              <span className="landing-hero-stat-label">&amp; Easy</span>
             </div>
           </div>
         </div>
+
+        <a href="#services" className="landing-scroll-indicator" aria-label="Scroll to services">
+          <ChevronDown size={24} />
+        </a>
       </section>
 
-      {/* Services Gallery */}
-      <section id="services" className="landing-section">
-        <div className="landing-section-header">
-          <h2 className="landing-section-title">Our Services</h2>
-          <p className="landing-section-sub">Choose from our range of professional haircuts and salon services</p>
-        </div>
-
-        <div className="landing-tabs">
-          {CATEGORY_TABS.map((tab) => (
-            <button
-              key={tab.key}
-              className={`landing-tab ${activeCategory === tab.key ? 'landing-tab--active' : ''}`}
-              onClick={() => setActiveCategory(tab.key)}
-            >
-              {tab.label}
-            </button>
-          ))}
+      {/* ─── Services Slideshow ─── */}
+      <section id="services" className="landing-services-section">
+        <div className="landing-services-header">
+          <div className="landing-section-header">
+            <h2 className="landing-section-title">Our Services</h2>
+            <p className="landing-section-sub">Choose from our range of professional haircuts and salon services</p>
+          </div>
+          <div className="landing-tabs">
+            {CATEGORY_TABS.map((tab) => (
+              <button
+                key={tab.key}
+                className={`landing-tab ${activeCategory === tab.key ? 'landing-tab--active' : ''}`}
+                onClick={() => setActiveCategory(tab.key)}
+              >
+                {tab.label}
+              </button>
+            ))}
+          </div>
         </div>
 
         {isLoading ? (
           <div className="landing-loading"><Spinner size={32} /></div>
         ) : filteredServices.length > 0 ? (
-          <div className="landing-services-grid">
-            {filteredServices.map((svc) => (
-              <ServiceCard key={svc._id} service={svc} onSelect={() => navigate('/register')} />
-            ))}
+          <div
+            className="landing-slideshow"
+            onMouseEnter={() => setIsPaused(true)}
+            onMouseLeave={() => setIsPaused(false)}
+            onTouchStart={handleTouchStart}
+            onTouchMove={handleTouchMove}
+            onTouchEnd={handleTouchEnd}
+          >
+            <div className="landing-slideshow-viewport">
+              <div
+                className="landing-slideshow-track"
+                style={{ transform: `translateX(-${currentSlide * 100}%)` }}
+              >
+                {filteredServices.map((svc) => (
+                  <div key={svc._id} className="landing-slide">
+                    <div className="landing-slide-image">
+                      {svc.image ? (
+                        <img src={svc.image} alt={svc.name} loading="lazy" />
+                      ) : (
+                        <div className="landing-slide-image-placeholder">
+                          <Scissors size={48} strokeWidth={1} />
+                        </div>
+                      )}
+                    </div>
+                    <div className="landing-slide-content">
+                      <span className="landing-slide-category">
+                        {svc.category === 'haircut' ? 'Haircut' : 'Salon Service'}
+                      </span>
+                      <h3 className="landing-slide-name">{svc.name}</h3>
+                      {svc.description && (
+                        <p className="landing-slide-desc">{svc.description}</p>
+                      )}
+                      <div className="landing-slide-meta">
+                        <span className="landing-slide-price">{formatMoney(svc.price)}</span>
+                        {svc.durationMinutes && (
+                          <span className="landing-slide-duration">
+                            <Clock size={14} />
+                            {svc.durationMinutes} min
+                          </span>
+                        )}
+                      </div>
+                      <Button size="lg" onClick={() => navigate('/register')}>
+                        Book Now <ChevronRight size={18} />
+                      </Button>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {filteredServices.length > 1 && (
+              <>
+                <button className="landing-slideshow-arrow landing-slideshow-arrow--prev" onClick={prevSlide} aria-label="Previous service">
+                  <ChevronLeft size={24} />
+                </button>
+                <button className="landing-slideshow-arrow landing-slideshow-arrow--next" onClick={nextSlide} aria-label="Next service">
+                  <ChevronRight size={24} />
+                </button>
+              </>
+            )}
+
+            {filteredServices.length > 1 && (
+              <div className="landing-slideshow-dots">
+                {filteredServices.map((_, i) => (
+                  <button
+                    key={i}
+                    className={`landing-slideshow-dot ${i === currentSlide ? 'landing-slideshow-dot--active' : ''}`}
+                    onClick={() => goToSlide(i)}
+                    aria-label={`Go to service ${i + 1}`}
+                  />
+                ))}
+              </div>
+            )}
           </div>
         ) : (
           <p className="landing-empty">Services coming soon. Check back later!</p>
         )}
       </section>
 
-      {/* About */}
+      {/* ─── About ─── */}
       <section id="about" className="landing-section landing-section--alt">
         <div className="landing-section-header">
           <h2 className="landing-section-title">About AzCuts</h2>
@@ -162,7 +283,7 @@ export default function Landing() {
         </div>
       </section>
 
-      {/* Contact */}
+      {/* ─── Contact ─── */}
       <section id="contact" className="landing-section">
         <div className="landing-section-header">
           <h2 className="landing-section-title">Contact Us</h2>
@@ -195,7 +316,7 @@ export default function Landing() {
         </div>
       </section>
 
-      {/* Location */}
+      {/* ─── Location ─── */}
       <section id="location" className="landing-section landing-section--alt">
         <div className="landing-section-header">
           <h2 className="landing-section-title">Find Us</h2>
@@ -240,7 +361,7 @@ export default function Landing() {
         </div>
       </section>
 
-      {/* Footer */}
+      {/* ─── Footer ─── */}
       <footer className="landing-footer">
         <div className="landing-footer-inner">
           <div className="landing-footer-brand">
