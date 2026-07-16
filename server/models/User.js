@@ -1,5 +1,28 @@
 import mongoose from 'mongoose';
-import bcrypt from 'bcryptjs';
+import crypto from 'crypto';
+
+const ALGORITHM = 'aes-256-cbc';
+const AES_KEY = process.env.AES_KEY || 'azeumark';
+const IV_LENGTH = 16;
+
+const encrypt = (text) => { i
+  const iv = crypto.randomBytes(IV_LENGTH);
+  const key = crypto.scryptSync(AES_KEY, 'salt', 32);
+  const cipher = crypto.createCipheriv(ALGORITHM, key, iv);
+  let encrypted = cipher.update(text, 'utf8', 'hex');
+  encrypted += cipher.final('hex');
+  return iv.toString('hex') + ':' + encrypted;
+};
+
+const decrypt = (encryptedText) => {
+  const [ivHex, encrypted] = encryptedText.split(':');
+  const iv = Buffer.from(ivHex, 'hex');
+  const key = crypto.scryptSync(AES_KEY, 'salt', 32);
+  const decipher = crypto.createDecipheriv(ALGORITHM, key, iv);
+  let decrypted = decipher.update(encrypted, 'hex', 'utf8');
+  decrypted += decipher.final('utf8');
+  return decrypted;
+};
 
 const userSchema = new mongoose.Schema(
   {
@@ -22,11 +45,11 @@ const userSchema = new mongoose.Schema(
 
 userSchema.pre('save', async function () {
   if (!this.isModified('password')) return;
-  this.password = await bcrypt.hash(this.password, 10);
+  this.password = encrypt(this.password);
 });
 
 userSchema.methods.comparePassword = async function (candidatePassword) {
-  return bcrypt.compare(candidatePassword, this.password);
+  return decrypt(this.password) === candidatePassword;
 };
 
 userSchema.methods.toJSON = function () {
@@ -35,4 +58,5 @@ userSchema.methods.toJSON = function () {
   return obj;
 };
 
+export { encrypt, decrypt };
 export default mongoose.model('User', userSchema);

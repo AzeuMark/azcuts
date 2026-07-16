@@ -88,9 +88,7 @@ function ServicesTab() {
 
       <div className="inv-grid">
         {services?.map((svc) => {
-          const imgSrc = svc.image
-            ? `${import.meta.env.VITE_API_URL?.replace('/api', '') || 'http://localhost:5000'}/${svc.image}`
-            : null;
+          const imgSrc = svc.image || null;
           return (
             <Card key={svc._id} className={`inv-card ${!svc.isActive ? 'inv-card--inactive' : ''}`}>
               <div className="inv-card-img">

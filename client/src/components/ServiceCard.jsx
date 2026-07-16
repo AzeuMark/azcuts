@@ -3,9 +3,7 @@ import { formatMoney } from '../utils/formatMoney';
 import './ServiceCard.css';
 
 export default function ServiceCard({ service, onSelect, selected, compact }) {
-  const imgSrc = service.image
-    ? `${import.meta.env.VITE_API_URL?.replace('/api', '') || 'http://localhost:5000'}/${service.image}`
-    : null;
+  const imgSrc = service.image || null;
 
   return (
     <button
