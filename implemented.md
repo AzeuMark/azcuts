@@ -15,14 +15,14 @@
 - [x] **Phase 0 — Skeleton** — folders, deps, app/server, DB connect, health route.
 - [x] **Phase 1 — Models & Auth** — models, JWT register/login/refresh/logout/me, middleware.
 - [x] **Phase 2 — Inventory** — services + extras CRUD + image upload + public GET.
-- [ ] **Phase 3 — Scheduling & Booking core** — slots, pricing, create booking, receiptNo.
-- [ ] **Phase 4 — State machine & Staff flow** — transitions, accept/reject/start/finish, auto-assign, cancel.
-- [ ] **Phase 5 — Ratings** — rate after done + edit; recompute staff avg.
-- [ ] **Phase 6 — Admin management** — dashboard, user/staff CRUD (20/pp), discounts, histories.
-- [ ] **Phase 7 — Analytics & Reports** — aggregations, range filters, CSV/JSON export.
-- [ ] **Phase 8 — System settings & mode gate** — settings CRUD, nicknames, offline/maintenance.
-- [ ] **Phase 9 — Real-time** — Socket.io events.
-- [ ] **Phase 10 — Hardening & Deployment** — rate limit, validation, deploy docs.
+- [x] **Phase 3 — Scheduling & Booking core** — slots, pricing, create booking, receiptNo.
+- [x] **Phase 4 — State machine & Staff flow** — transitions, accept/reject/start/finish, auto-assign, cancel.
+- [x] **Phase 5 — Ratings** — rate after done + edit; recompute staff avg.
+- [x] **Phase 6 — Admin management** — dashboard, user/staff CRUD (20/pp), discounts, histories.
+- [x] **Phase 7 — Analytics & Reports** — aggregations, range filters, CSV/JSON export.
+- [x] **Phase 8 — System settings & mode gate** — settings CRUD, nicknames, offline/maintenance.
+- [x] **Phase 9 — Real-time** — Socket.io events.
+- [x] **Phase 10 — Hardening & Deployment** — rate limit, validation, deploy docs.
 
 ## CLIENT PHASES
 - [x] **Phase 0 — Skeleton & design system** — router, providers, theme tokens + light/dark toggle, UI kit.
@@ -58,3 +58,11 @@
 | 2026-07-15 | Server | Phase 0 | Project skeleton | Express + Mongoose + all deps, config (env/db/bootstrap), middleware (error/validate), utils (ApiError/asyncHandler/response/logger), app.js + server.js, health route, .env, seed files moved. Server connects to MongoDB, /api/health returns 200. |
 | 2026-07-15 | Server | Phase 1 | Models & Auth | All 6 Mongoose models (User, Service, Extra, Appointment, Settings, RefreshToken), auth middleware (verifyAccessToken + requireRole), auth service (sign/verify tokens, register, login, refresh, logout), auth controller + routes, auth validators, bootstrap seeds settings + admin on first boot. Admin can login, customer can register+login. Express 4 (downgraded from 5 for middleware compat). Mongoose 9 pre-save hook fix (no next). JWT jti for unique tokens. |
 | 2026-07-15 | Server | Phase 2 | Inventory | Multer upload middleware (disk storage, UUID filenames, image-only filter, 5MB limit), inventory controller (services CRUD + extras CRUD), inventory routes (public GET + admin CRUD with auth+role), inventory validators, settings routes (public GET with shopInfo+services+extras, admin PUT, nickname add/update/delete). All endpoints tested. |
+| 2026-07-15 | Server | Phase 3 | Scheduling & Booking core | Scheduling service (slot generation from store hours + step, overlap check, past slot exclusion), pricing service (base + extras - discount + tax, snapshot builder), assignment service (auto-assign least-loaded staff), appointment service (create booking with receiptNo, list mine, get one, cancel), receipt service (canonical receipt JSON with populated refs), appointment controller + routes (slots, create, mine, getOne, cancel, receipt), appointment validators. Full booking flow tested. |
+| 2026-07-15 | Server | Phase 4 | State machine & Staff flow | State machine (ALLOWED transitions map, validateTransition, timestamp fields), staff controller (getAppointments incoming/mine, accept, reject, changeStatus, getHistory with ratings, setShift active/inactive), staff routes, user controller (getProfile, updateProfile, changePassword), user routes, appointment routes updated with PATCH /:id/status. State machine blocks invalid transitions (409 Conflict). Full lifecycle tested. |
+| 2026-07-15 | Server | Phase 5 | Ratings | Rating service (rateAppointment — validates done status + ownership, uses findByIdAndUpdate to avoid Mongoose re-validation, recomputes staff avgRating/ratingCount), rating controller endpoint, POST /:id/rate route with validators. Fixed NaN bug in recompute (default to 0 for first rating). First rating + edit both tested. |
+| 2026-07-15 | Server | Phase 6 | Admin management | Admin controller (dashboard with 6 counters + recent appointments, user CRUD with paginated 20/pp + search + role filter, create user/staff with nickname, update/delete, setDiscount recomputes priceSnapshot, staff history with ratings, user history), admin routes (all admin-only). All endpoints tested. |
+| 2026-07-15 | Server | Phase 7 | Analytics & Reports | Analytics service (getSummary with revenue/appointments/customers/avg, getSales with salesOverTime/topServices/statusSplit/revenueByStaff aggregation pipelines, getReport with JSON + CSV export), analytics controller + routes (summary, sales, report with range filters: daily/weekly/monthly/yearly/all). CSV download with Content-Disposition header. All endpoints tested. |
+| 2026-07-15 | Server | Phase 8 | System settings & mode gate | systemMode middleware (checks Settings.systemMode, blocks users in maintenance, blocks non-admin in offline), mode-aware login (auth.service checks mode AFTER verifying credentials), systemMode applied to user/staff/appointment routes. Settings CRUD + nickname management already built in Phase 2. All mode scenarios tested (online→maintenance→offline→restore). |
+| 2026-07-15 | Server | Phase 9 | Real-time | Socket.io init (JWT handshake auth, room joining: user:<id>, staff, admin), events constants (5 events), notify service (notifyAppointmentNew, notifyAppointmentUpdated, notifyAppointmentAssigned, notifyDashboardRefresh, notifyRatingAdded), server.js updated with HTTP server + Socket.io, wired notify into appointment service (create, cancel, changeStatus, accept, reject) and rating service. Server starts, Socket.io responds on /socket.io/. |
+| 2026-07-15 | Server | Phase 10 | Hardening & Deployment | express-rate-limit (auth: 20 req/15min, general: 100 req/min), rate limit middleware applied to auth routes + global, PM2 ecosystem config, DEPLOY.md with 3 deployment options (PM2, Docker, Railway/Render), MongoDB Atlas setup, backup commands, security checklist, CORS notes. Server runs stable. |

@@ -3,6 +3,7 @@ import crypto from 'crypto';
 import env from '../config/env.js';
 import User from '../models/User.js';
 import RefreshToken from '../models/RefreshToken.js';
+import Settings from '../models/Settings.js';
 import ApiError from '../utils/ApiError.js';
 
 export function signAccessToken(user) {
@@ -45,6 +46,17 @@ export async function login({ email, password }) {
 
   const isMatch = await user.comparePassword(password);
   if (!isMatch) throw new ApiError(401, 'Invalid email or password');
+
+  // System mode gate — check AFTER verifying credentials
+  const settings = await Settings.findById('system');
+  const mode = settings?.systemMode || 'online';
+
+  if (mode === 'maintenance' && user.role === 'user') {
+    throw new ApiError(503, 'System is under maintenance. Only admin and staff can log in.');
+  }
+  if (mode === 'offline' && user.role !== 'admin') {
+    throw new ApiError(503, 'System is currently offline. Only admin can log in.');
+  }
 
   const accessToken = signAccessToken(user);
   const refreshToken = signRefreshToken(user);

@@ -7,6 +7,7 @@ import { fileURLToPath } from 'url';
 import env from './config/env.js';
 import routes from './routes/index.js';
 import errorHandler from './middleware/error.js';
+import { generalLimiter } from './middleware/rateLimit.js';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
@@ -18,6 +19,9 @@ app.use(cors({ origin: env.clientOrigin, credentials: true }));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(morgan('dev'));
+
+// Rate limiting
+app.use(generalLimiter);
 
 // Static uploads
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
