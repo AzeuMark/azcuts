@@ -1,4 +1,4 @@
-import { useState, useCallback } from 'react';
+import { useState, useCallback, useEffect } from 'react';
 import { useQuery, useQueryClient } from '@tanstack/react-query';
 import { useForm } from 'react-hook-form';
 import { Plus, Pencil, Trash2, Scissors, Sparkles, Upload } from 'lucide-react';
@@ -145,7 +145,7 @@ function ServiceFormModal({ open, service, onClose, onSaved }) {
 
   const { register, handleSubmit, reset, formState: { errors } } = useForm();
 
-  useState(() => {
+  useEffect(() => {
     if (service) {
       reset({
         name: service.name,
@@ -158,7 +158,7 @@ function ServiceFormModal({ open, service, onClose, onSaved }) {
       reset({ category: 'haircut', durationMinutes: 30 });
       setImageFile(null);
     }
-  }, [service]);
+  }, [service, reset]);
 
   const onSubmit = async (values) => {
     setLoading(true);
@@ -303,13 +303,13 @@ function ExtraFormModal({ open, extra, onClose, onSaved }) {
 
   const { register, handleSubmit, reset, formState: { errors } } = useForm();
 
-  useState(() => {
+  useEffect(() => {
     if (extra) {
       reset({ name: extra.name, price: extra.price, durationMinutes: extra.durationMinutes || 0 });
     } else {
       reset({ durationMinutes: 0 });
     }
-  }, [extra]);
+  }, [extra, reset]);
 
   const onSubmit = async (values) => {
     setLoading(true);
