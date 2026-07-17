@@ -12,6 +12,7 @@ import { generalLimiter } from './middleware/rateLimit.js';
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 const app = express();
+app.set('trust proxy', 1);
 
 // 1. FIXED CORS: Allow all origins in production, or fallback to clientOrigin
 const allowedOrigin = env.nodeEnv === 'production' ? true : env.clientOrigin;
