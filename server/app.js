@@ -35,12 +35,13 @@ app.use('/api', routes);
 
 // 2. ADDED: Serve Vite production assets (Place right AFTER API routes, but BEFORE error handler)
 if (env.nodeEnv === 'production') {
-  app.use(express.static(path.resolve(__dirname, '../../client/dist')));
+  app.use(express.static(path.resolve(__dirname, '../client/dist')));
 
   app.get('*', (req, res) => {
-    res.sendFile(path.resolve(__dirname, '../../client/dist/index.html'));
+    res.sendFile(path.resolve(__dirname, '../client/dist/index.html'));
   });
 }
+
 
 // Error handler (must be last)
 app.use(errorHandler);
