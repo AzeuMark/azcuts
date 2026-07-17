@@ -1,6 +1,6 @@
 client\node_modules
 server\node_modules
-.commandcode
+.commandcode/*
 .kilo
 .opencode
 'server
