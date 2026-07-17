@@ -2,7 +2,7 @@
   "name": "azcuts-monorepo-root",
   "version": "1.0.0",
   "scripts": {
-    "heroku-postbuild": "npm install --prefix server && npm install --prefix client && npm run build --prefix client",
+    "heroku-postbuild": "npm install --prefix server --production=false && npm install --prefix client --production=false && npm run build --prefix client",
     "start": "npm start --prefix server"
   }
 }
