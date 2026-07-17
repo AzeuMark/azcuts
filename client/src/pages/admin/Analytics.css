@@ -80,10 +80,10 @@
   flex-shrink: 0;
 }
 
-.kpi-icon--green { background: rgba(22, 163, 74, 0.1); color: #16A34A; }
-.kpi-icon--blue { background: rgba(37, 99, 235, 0.1); color: #2563EB; }
-.kpi-icon--indigo { background: rgba(79, 70, 229, 0.1); color: #4F46E5; }
-.kpi-icon--amber { background: rgba(245, 158, 11, 0.1); color: #F59E0B; }
+.kpi-icon--green { background: rgba(22, 163, 74, 0.1); color: var(--success); }
+.kpi-icon--blue { background: rgba(37, 99, 235, 0.1); color: var(--info); }
+.kpi-icon--indigo { background: rgba(79, 70, 229, 0.1); color: var(--accent); }
+.kpi-icon--amber { background: rgba(245, 158, 11, 0.1); color: var(--warning); }
 
 .kpi-body {
   display: flex;

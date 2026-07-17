@@ -43,7 +43,7 @@
 }
 
 .history-action-btn--star {
-  color: #F59E0B;
+  color: var(--warning);
   border-color: rgba(245, 158, 11, 0.3);
 }
 
@@ -57,7 +57,7 @@
   gap: 3px;
   font-size: 0.8125rem;
   font-weight: 600;
-  color: #F59E0B;
+  color: var(--warning);
 }
 
 /* Cancel Dialog */

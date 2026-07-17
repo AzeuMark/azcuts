@@ -2,7 +2,7 @@ import express from 'express';
 import cors from 'cors';
 import helmet from 'helmet';
 import morgan from 'morgan';
-import path from 'path';
+import path from 'path'; 
 import { fileURLToPath } from 'url';
 import env from './config/env.js';
 import routes from './routes/index.js';

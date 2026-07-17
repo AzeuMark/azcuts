@@ -20,7 +20,7 @@
 }
 
 .rating-star--filled {
-  color: #F59E0B;
+  color: var(--warning);
 }
 
 .rating-star--readonly {
