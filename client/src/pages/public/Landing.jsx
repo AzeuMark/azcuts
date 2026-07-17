@@ -23,8 +23,16 @@ export default function Landing() {
   const [activeCategory, setActiveCategory] = useState('all');
   const [currentSlide, setCurrentSlide] = useState(0);
   const [isPaused, setIsPaused] = useState(false);
+  const [showBetaBanner, setShowBetaBanner] = useState(() => {
+    return !sessionStorage.getItem('az-beta-banner-dismissed');
+  });
   const touchStartX = useRef(0);
   const touchEndX = useRef(0);
+
+  const dismissBanner = () => {
+    setShowBetaBanner(false);
+    sessionStorage.setItem('az-beta-banner-dismissed', '1');
+  };
 
   const { data: publicData, isLoading } = useQuery({
     queryKey: ['publicSettings'],
@@ -80,7 +88,21 @@ export default function Landing() {
   };
 
   return (
-    <div className="landing">
+    <div className={`landing${showBetaBanner ? ' landing--has-banner' : ''}`}>
+      {/* ─── Beta Warning Banner ─── */}
+      {showBetaBanner && (
+        <div className="landing-beta-banner">
+          <div className="landing-beta-banner-inner">
+            <span className="landing-beta-banner-text">
+              ⚠️ This site is currently in testing mode — not yet in beta. You may encounter bugs, UI inconsistencies, and errors. Stay tuned for updates from the head developer (Uelmark).
+            </span>
+            <button className="landing-beta-banner-close" onClick={dismissBanner} aria-label="Dismiss">
+              ✕
+            </button>
+          </div>
+        </div>
+      )}
+
       <PublicNavbar />
 
       {/* ─── Hero ─── */}

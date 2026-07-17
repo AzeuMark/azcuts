@@ -23,6 +23,60 @@
   overflow-x: hidden;
 }
 
+/* ── Beta Warning Banner ── */
+.landing-beta-banner {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 9999;
+  background: linear-gradient(135deg, #D97706 0%, #B45309 100%);
+  color: #fff;
+  padding: 10px 16px;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.3);
+}
+
+.landing-beta-banner-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+}
+
+.landing-beta-banner-text {
+  font-size: 13px;
+  font-weight: 500;
+  line-height: 1.5;
+  text-align: center;
+}
+
+.landing-beta-banner-close {
+  background: rgba(255, 255, 255, 0.2);
+  border: none;
+  color: #fff;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  flex-shrink: 0;
+  transition: background 0.2s;
+}
+
+.landing-beta-banner-close:hover {
+  background: rgba(255, 255, 255, 0.35);
+}
+
+/* Push navbar down when banner is visible */
+.landing--has-banner .public-nav {
+  top: 44px;
+}
+
 /* ── Navbar glass override ── */
 .landing .public-nav {
   background: rgba(10, 11, 15, 0.82);
