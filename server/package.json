@@ -5,7 +5,9 @@
   "type": "module",
   "scripts": {
     "start": "node server.js",
-    "dev": "nodemon server.js"
+    "dev": "nodemon server.js",
+    "clean": "rmdir /s /q node_modules && del package-lock.json",
+    "seed": "node seed/adminseed.js"
   },
   "dependencies": {
 
