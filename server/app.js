@@ -13,9 +13,13 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 const app = express();
 
-// Security & parsing
-app.use(helmet());
-app.use(cors({ origin: env.clientOrigin, credentials: true }));
+// 1. FIXED CORS: Allow all origins in production, or fallback to clientOrigin
+const allowedOrigin = env.nodeEnv === 'production' ? true : env.clientOrigin;
+
+app.use(helmet({
+  contentSecurityPolicy: false, // Prevents Helmet from blocking Vite asset scripts
+}));
+app.use(cors({ origin: allowedOrigin, credentials: true }));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(morgan('dev'));
@@ -28,6 +32,15 @@ app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 
 // API routes
 app.use('/api', routes);
+
+// 2. ADDED: Serve Vite production assets (Place right AFTER API routes, but BEFORE error handler)
+if (env.nodeEnv === 'production') {
+  app.use(express.static(path.resolve(__dirname, '../../client/dist')));
+
+  app.get('*', (req, res) => {
+    res.sendFile(path.resolve(__dirname, '../../client/dist/index.html'));
+  });
+}
 
 // Error handler (must be last)
 app.use(errorHandler);
